@@ -20,7 +20,7 @@ jobs:
         with:
           # See here for a full description of the field.
           # https://github.com/ros-tooling/action-ros-ci/blob/c8ee1c91e007e9fdc7d0bedf1247746717a5ff39/action.yml#L45-L48
-          package-name: cpp_pubsub py_pubsub
+          package-name: telemetry_data_generation
           target-ros2-distro:  ${{ env.ROS_DISTRO }}
           # This token is required to clone this *private* repository. If other
           # private repositories are required, you will require a specific
