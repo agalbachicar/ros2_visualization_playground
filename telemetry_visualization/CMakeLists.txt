@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(telemetry_data_generation)
+project(telemetry_visualization)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -23,51 +23,20 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
 install(
-  DIRECTORY include/
-  DESTINATION include
+  DIRECTORY config/
+  DESTINATION config
 )
 
-add_library(telemetry_data_generation
-  SHARED
-    src/telemetry_data_generation/telemetry_data_generation.cpp
+add_executable(quat2euler_node
+  src/quat2euler/quat2euler_node.cpp
 )
-target_include_directories(telemetry_data_generation
-  PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:include>
-)
-ament_target_dependencies(telemetry_data_generation
-  builtin_interfaces
-  geometry_msgs
-  rclcpp
-  std_msgs
-)
-install(
-  TARGETS telemetry_data_generation
-  EXPORT export_telemetry_data_generation
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin
-)
-
-add_executable(telemetry_data_node
-  src/telemetry_data_generation/telemetry_data_node.cpp
-)
-target_include_directories(telemetry_data_node
-  PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-    $<INSTALL_INTERFACE:include>
-)
-target_link_libraries(telemetry_data_node
-  telemetry_data_generation
-)
-ament_target_dependencies(telemetry_data_node
+ament_target_dependencies(quat2euler_node
   rclcpp
   geometry_msgs
 )
 install(
-  TARGETS telemetry_data_node
-  EXPORT export_telemetry_data_generation
+  TARGETS quat2euler_node
+  EXPORT export_telemetry_visualization
   ARCHIVE DESTINATION lib/${PROJECT_NAME}
   LIBRARY DESTINATION lib/${PROJECT_NAME}
   RUNTIME DESTINATION lib/${PROJECT_NAME}

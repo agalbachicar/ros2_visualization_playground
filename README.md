@@ -79,13 +79,36 @@ colcon build --event-handlers console_direct+
 - To test:
 
 ```sh
-colcon test
-# You should also consider to add --event-handlers console_direct+ to better
-# understand what's going on:
-# $ colcon test --event-handlers console_direct+
+colcon test --event-handlers console_direct+
 colcon test-result
 ```
 
 ## Try the code!
 
-TBD
+After building, source your install space:
+
+```sh
+source install/setup.bash
+```
+
+Run a node to generate synthetic telemetry data:
+
+```sh
+ros2 run telemetry_data_generation telemetry_data_node
+```
+
+Run the quaternion to euler angles conversion
+
+```sh
+ros2 run telemetry_visualization quat2euler_node
+```
+
+Finally, run the `rqt_gui` visualization:
+
+```sh
+ros2 run rqt_gui rqt_gui --perspective-file install/telemetry_visualization/config/perspectives/pose.perspective
+```
+
+And you should see the RQT visualization displaying something like:
+
+![rqt_perspective](/doc/rqt_perspective.png)
