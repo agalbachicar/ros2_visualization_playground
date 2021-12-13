@@ -108,3 +108,7 @@ Finally, run the `rqt_gui` visualization:
 ```sh
 ros2 run rqt_gui rqt_gui --perspective-file install/telemetry_visualization/config/perspectives/pose.perspective
 ```
+
+And you should see the RQT visualization displaying something like:
+
+![rqt_perspective](/doc/rqt_perspective.png)
