@@ -37,7 +37,7 @@ public:
   : Node("telemetry_data_publisher"), start_time_(rclcpp::Clock().now())
   {
     publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("pose", 10);
-    timer_ = this->create_wall_timer(100ms, std::bind(&DataPublisher::TimerCallback, this));
+    timer_ = this->create_wall_timer(1ms, std::bind(&DataPublisher::TimerCallback, this));
   }
 
 private:
@@ -45,7 +45,6 @@ private:
   {
     const double t = (rclcpp::Clock().now() - start_time_).seconds();
     auto message = ComputeNextPose(t);
-    RCLCPP_INFO(this->get_logger(), "Publishing data at %f", t);
     publisher_->publish(message);
   }
 

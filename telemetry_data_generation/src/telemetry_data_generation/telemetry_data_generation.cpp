@@ -40,6 +40,7 @@ geometry_msgs::msg::PoseStamped ComputeNextPose(double t)
   double yaw = std::fmod(2. * M_PI * 0.1 * t + M_PI, 2. * M_PI);
   yaw = yaw > 0. ? yaw + M_PI : yaw - M_PI;
   // Euler angles -> quaternion
+  // See https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles
   result.pose.orientation.x = sin(roll / 2.) * cos(pitch / 2.) * cos(yaw / 2.) - cos(roll / 2.) *
     sin(pitch / 2.) * sin(yaw / 2.);
   result.pose.orientation.y = cos(roll / 2.) * sin(pitch / 2.) * cos(yaw / 2.) + sin(roll / 2.) *
