@@ -23,7 +23,7 @@ find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
 install(
-  DIRECTORY config
+  DIRECTORY config/
   DESTINATION config
 )
 
@@ -37,9 +37,9 @@ ament_target_dependencies(quat2euler_node
 install(
   TARGETS quat2euler_node
   EXPORT export_telemetry_visualization
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin
+  ARCHIVE DESTINATION lib/${PROJECT_NAME}
+  LIBRARY DESTINATION lib/${PROJECT_NAME}
+  RUNTIME DESTINATION lib/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)

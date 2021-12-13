@@ -68,9 +68,9 @@ ament_target_dependencies(telemetry_data_node
 install(
   TARGETS telemetry_data_node
   EXPORT export_telemetry_data_generation
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION bin
+  ARCHIVE DESTINATION lib/${PROJECT_NAME}
+  LIBRARY DESTINATION lib/${PROJECT_NAME}
+  RUNTIME DESTINATION lib/${PROJECT_NAME}
 )
 
 if(BUILD_TESTING)
