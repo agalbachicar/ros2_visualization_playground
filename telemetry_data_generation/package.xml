@@ -4,8 +4,8 @@
   <name>telemetry_data_generation</name>
   <version>0.0.1</version>
   <description>Generates arbitrary telemetry data</description>
-  <maintainer email="agalbachicar@ekumenlabs.com">agalbachicar</maintainer>
-  <license>BSD 3-Clause</license>
+  <maintainer email="agalbachicar@ekumenlabs.com">Agustin Alba Chicar</maintainer>
+  <license>Apache License 2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 

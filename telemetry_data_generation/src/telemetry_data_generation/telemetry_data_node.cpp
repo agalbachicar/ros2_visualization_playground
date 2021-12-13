@@ -1,3 +1,16 @@
+// Copyright 2021 Agustin Alba Chicar.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
 #include "telemetry_data_generation/telemetry_data_generation.hpp"
 
 #include <chrono>
@@ -5,24 +18,31 @@
 #include <memory>
 #include <utility>
 
-#include <geometry_msgs/msg/pose_stamped.hpp>
-#include <rclcpp/clock.hpp>
-#include <rclcpp/rclcpp.hpp>
+#include "rclcpp/clock.hpp"
+#include "rclcpp/rclcpp.hpp"
 
-namespace telemetry_data_generation {
-namespace {
+#include "geometry_msgs/msg/pose_stamped.hpp"
+
+namespace telemetry_data_generation
+{
+namespace
+{
 
 using namespace std::chrono_literals;
 
-class DataPublisher : public rclcpp::Node {
- public:
-  DataPublisher() : Node("telemetry_data_publisher"), start_time_(rclcpp::Clock().now()) {
+class DataPublisher : public rclcpp::Node
+{
+public:
+  DataPublisher()
+  : Node("telemetry_data_publisher"), start_time_(rclcpp::Clock().now())
+  {
     publisher_ = this->create_publisher<geometry_msgs::msg::PoseStamped>("pose", 10);
     timer_ = this->create_wall_timer(100ms, std::bind(&DataPublisher::TimerCallback, this));
   }
 
- private:
-  void TimerCallback() {
+private:
+  void TimerCallback()
+  {
     const double t = (rclcpp::Clock().now() - start_time_).seconds();
     auto message = ComputeNextPose(t);
     RCLCPP_INFO(this->get_logger(), "Publishing data at %f", t);
@@ -34,7 +54,8 @@ class DataPublisher : public rclcpp::Node {
   rclcpp::Time start_time_;
 };
 
-int Main(int argc, char** argv) {
+int Main(int argc, char ** argv)
+{
   rclcpp::init(argc, argv);
   rclcpp::spin(std::make_shared<DataPublisher>());
   rclcpp::shutdown();
@@ -42,6 +63,6 @@ int Main(int argc, char** argv) {
 }
 
 }  // namespace
-}  // telemetry_data_generation
+}  // namespace telemetry_data_generation
 
-int main(int argc, char** argv) { return telemetry_data_generation::Main(argc, argv); }
+int main(int argc, char ** argv) {return telemetry_data_generation::Main(argc, argv);}
