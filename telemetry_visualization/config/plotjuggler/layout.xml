@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root version="2.3.8">
+ <tabbed_widget name="Main Window" parent="main_window">
+  <Tab containers="1" tab_name="tab1">
+   <Container>
+    <DockSplitter orientation="-" sizes="0.687351;0.312649" count="2">
+     <DockSplitter orientation="|" sizes="0.500225;0.499775" count="2">
+      <DockSplitter orientation="-" sizes="0.500579;0.499421" count="2">
+       <DockArea name="...">
+        <plot mode="TimeSeries" style="Lines">
+         <range right="4.999872" left="0.000000" bottom="-9.374651" top="10.472552"/>
+         <limitY/>
+         <curve name="/pose/pose/position/x" color="#1f77b4"/>
+        </plot>
+       </DockArea>
+       <DockArea name="...">
+        <plot mode="TimeSeries" style="Lines">
+         <range right="4.999872" left="0.000000" bottom="-10.363875" top="4.918876"/>
+         <limitY/>
+         <curve name="/pose/pose/position/y" color="#d62728"/>
+        </plot>
+       </DockArea>
+      </DockSplitter>
+      <DockSplitter orientation="-" sizes="0.500579;0.499421" count="2">
+       <DockArea name="...">
+        <plot mode="TimeSeries" style="Lines">
+         <range right="5.000041" left="0.001045" bottom="-0.100000" top="0.100000"/>
+         <limitY/>
+         <curve name="/euler_angles/point/x" color="#ff7f0e"/>
+        </plot>
+       </DockArea>
+       <DockArea name="...">
+        <plot mode="TimeSeries" style="Lines">
+         <range right="5.000041" left="0.001045" bottom="-0.084086" top="0.115914"/>
+         <limitY/>
+         <curve name="/euler_angles/point/y" color="#f14cc1"/>
+        </plot>
+       </DockArea>
+      </DockSplitter>
+     </DockSplitter>
+     <DockSplitter orientation="|" sizes="0.500225;0.499775" count="2">
+      <DockArea name="...">
+       <plot mode="TimeSeries" style="Lines">
+        <range right="4.999872" left="0.000000" bottom="32.162230" top="32.687221"/>
+        <limitY/>
+        <curve name="/pose/pose/position/z" color="#1ac938"/>
+       </plot>
+      </DockArea>
+      <DockArea name="...">
+       <plot mode="TimeSeries" style="Lines">
+        <range right="5.000041" left="0.001045" bottom="-3.298478" top="3.298190"/>
+        <limitY/>
+        <curve name="/euler_angles/point/z" color="#9467bd"/>
+       </plot>
+      </DockArea>
+     </DockSplitter>
+    </DockSplitter>
+   </Container>
+  </Tab>
+  <currentTabIndex index="0"/>
+ </tabbed_widget>
+ <use_relative_time_offset enabled="1"/>
+ <!-- - - - - - - - - - - - - - - -->
+ <!-- - - - - - - - - - - - - - - -->
+ <Plugins>
+  <plugin ID="DataLoad CSV">
+   <default time_axis=""/>
+  </plugin>
+  <plugin ID="DataLoad ROS2 bags">
+   <use_header_stamp value="false"/>
+   <discard_large_arrays value="true"/>
+   <max_array_size value="100"/>
+  </plugin>
+  <plugin ID="DataLoad ULog"/>
+  <plugin ID="ROS2 Topic Subscriber">
+   <use_header_stamp value="false"/>
+   <discard_large_arrays value="true"/>
+   <max_array_size value="true"/>
+   <selected_topics>
+    <topic name="/pose"/>
+    <topic name="/euler_angles"/>
+   </selected_topics>
+  </plugin>
+  <plugin ID="UDP Server"/>
+  <plugin ID="WebSocket Server"/>
+  <plugin ID="ZMQ Subscriber"/>
+  <plugin ID="CSV Exporter" status="idle"/>
+  <plugin ID="ROS2 Topic Re-Publisher" status="idle"/>
+ </Plugins>
+ <!-- - - - - - - - - - - - - - - -->
+ <previouslyLoaded_Datafiles/>
+ <!-- - - - - - - - - - - - - - - -->
+ <customMathEquations/>
+ <snippets/>
+ <!-- - - - - - - - - - - - - - - -->
+</root>
+
