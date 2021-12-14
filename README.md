@@ -103,7 +103,7 @@ Run the quaternion to euler angles conversion
 ros2 run telemetry_visualization quat2euler_node
 ```
 
-Finally, run the `rqt_gui` visualization:
+Run the `rqt_gui` visualization:
 
 ```sh
 ros2 run rqt_gui rqt_gui --perspective-file install/telemetry_visualization/config/perspectives/pose.perspective
@@ -112,3 +112,18 @@ ros2 run rqt_gui rqt_gui --perspective-file install/telemetry_visualization/conf
 And you should see the RQT visualization displaying something like:
 
 ![rqt_perspective](/doc/rqt_perspective.png)
+
+Alternatively, you could use PlotJuggler:
+
+```sh
+ros2 run plotjuggler plotjuggler
+```
+
+Once the window is open, load the layout configuration by clicking on the button
+next to `Layout` and look for the `layout.xml` file that should be in
+`install/telemetry_visualization/config/plotjuggler/layout.xml`.
+Choose the `ROS2 Topic Subscriber` and click on `Start`.
+Select `/pose` and `/euler_angles` topics. Click on `Start` and you should
+see something like the following picture.
+
+![plot_juggler_layout](/doc/plotjuggler_layout.png)
